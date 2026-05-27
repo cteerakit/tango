@@ -13,7 +13,7 @@ GitHub Actions (cron, GMT+7 evening window)
     → Update last_match.json and commit [skip ci]
 ```
 
-Active hours: **21:00–02:00 GMT+7** (`Asia/Bangkok`). The workflow cron runs every 3 minutes during the equivalent UTC window (14:00–18:57 UTC). The script enforces the window; manual runs can bypass it.
+Active hours: **21:00–02:00 GMT+7**. The workflow cron runs every **5 minutes** during the equivalent UTC window (14:00–18:55 UTC)—GitHub’s minimum supported schedule interval. The script enforces the window; manual runs can bypass it.
 
 ## Setup
 
@@ -85,5 +85,5 @@ Each new match sends an embed with:
 ## Notes
 
 - Matches outside the evening window are reported on the first poll inside the window.
-- Scheduled runs may start a few minutes late during high GitHub load.
+- Scheduled runs may start several minutes late during high GitHub load (even with a 5-minute cron).
 - Do not commit your Discord webhook URL to the repository.
