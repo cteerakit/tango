@@ -13,7 +13,7 @@ GitHub Actions (cron, GMT+7 evening window)
     → Update last_match.json and commit [skip ci]
 ```
 
-Active hours: **21:00–02:00 GMT+7**. The workflow cron runs every **5 minutes** during the equivalent UTC window (14:00–18:55 UTC)—GitHub’s minimum supported schedule interval. The script enforces the window; manual runs can bypass it.
+Active hours: **21:00–02:00 GMT+7** (enforced in `monitor.py`). GitHub Actions fires every **5 minutes** (scheduler minimum); outside the window the job exits immediately without calling OpenDota. Use **Run workflow** with **force** to test anytime.
 
 ## Setup
 
@@ -85,5 +85,7 @@ Each new match sends an embed with:
 ## Notes
 
 - Matches outside the evening window are reported on the first poll inside the window.
-- Scheduled runs may start several minutes late during high GitHub load (even with a 5-minute cron).
+- Scheduled runs may start several minutes late during high GitHub load.
+- Outside 21:00–02:00 GMT+7 you will still see **Scheduled** runs in Actions; logs will say `Outside active window` (expected).
+- Ensure the workflow is **enabled**: Actions → Dota 2 Match Monitor → **Enable workflow** (disabled workflows do not schedule).
 - Do not commit your Discord webhook URL to the repository.

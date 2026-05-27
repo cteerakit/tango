@@ -2,8 +2,9 @@ name: Dota 2 Match Monitor
 
 on:
   schedule:
-    # GitHub supports at most one scheduled run every 5 minutes
-    - cron: "*/5 14-18 * * *"
+    # Every 5 min (GitHub minimum). monitor.py enforces 21:00–02:00 GMT+7.
+    # Hour-limited cron (14-18 UTC) is unreliable on GitHub's scheduler.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       force:
@@ -17,7 +18,7 @@ permissions:
 # Avoid overlapping runs racing on last_match.json push
 concurrency:
   group: dota-monitor-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   monitor:
@@ -33,6 +34,12 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Log schedule time
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "UTC:  $(date -u '+%Y-%m-%d %H:%M:%S')"
+          python -c "from datetime import datetime, timedelta, timezone; z=timezone(timedelta(hours=7)); print('GMT+7:', datetime.now(z).strftime('%Y-%m-%d %H:%M:%S'))"
 
       - name: Run monitor
         env:

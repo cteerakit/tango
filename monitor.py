@@ -30,9 +30,7 @@ def in_active_window(now: datetime | None = None) -> bool:
 
 
 def should_bypass_time_guard() -> bool:
-    if os.environ.get("FORCE_RUN", "").lower() in ("1", "true", "yes"):
-        return True
-    return os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+    return os.environ.get("FORCE_RUN", "").lower() in ("1", "true", "yes")
 
 
 def mark_state_changed() -> None:
