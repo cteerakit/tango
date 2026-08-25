@@ -1,5 +1,12 @@
 # Dota 2 Match Monitor
 
+> **This project is no longer maintained.**
+>
+> This was an experiment to work with the [OpenDota](https://www.opendota.com/) API and a Discord bot. Development has moved to **[APEM](https://github.com/cteerakit/apem)**, a Windows desktop companion for Dota 2.
+>
+> [![GitHub Sponsors](https://img.shields.io/github/sponsors/cteerakit?style=flat-square)](https://github.com/sponsors/cteerakit)
+> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
 Lightweight, free-tier match notifier for Dota 2. Polls [OpenDota](https://www.opendota.com/) on a schedule, posts rich match summaries to Discord, and tracks state in `last_match.json` via GitHub Actions.
 
 **Monitored player:** [OpenDota profile 1088417288](https://www.opendota.com/players/1088417288)
@@ -8,9 +15,9 @@ Lightweight, free-tier match notifier for Dota 2. Polls [OpenDota](https://www.o
 
 ```text
 GitHub Actions (cron, GMT+7 evening window)
-    → monitor.py polls OpenDota recentMatches
-    → New match? POST Discord webhook embed
-    → Update last_match.json and commit [skip ci]
+→ monitor.py polls OpenDota recentMatches
+→ New match? POST Discord webhook embed
+→ Update last_match.json and commit [skip ci]
 ```
 
 Active hours: **21:00–02:00 GMT+7** (enforced in `monitor.py`). GitHub Actions fires every **5 minutes** (scheduler minimum); outside the window the job exits immediately without calling OpenDota. Use **Run workflow** with **force** to test anytime.
@@ -89,3 +96,11 @@ Each new match sends an embed with:
 - Outside 21:00–02:00 GMT+7 you will still see **Scheduled** runs in Actions; logs will say `Outside active window` (expected).
 - Ensure the workflow is **enabled**: Actions → Dota 2 Match Monitor → **Enable workflow** (disabled workflows do not schedule).
 - Do not commit your Discord webhook URL to the repository.
+
+## Sponsor
+
+If you find this work useful, consider [sponsoring on GitHub](https://github.com/sponsors/cteerakit).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
