@@ -2,7 +2,7 @@
 
 > **This project is no longer maintained.**
 >
-> This was an experiment to work with the [OpenDota](https://www.opendota.com/) API and a Discord bot. Development has moved to **[APEM](https://github.com/cteerakit/apem)**, a Windows desktop companion for Dota 2.
+> This was an experiment to work with the [OpenDota](https://www.opendota.com/) API and a Discord bot. Development has moved to **[Mango](https://github.com/cteerakit/mango)**, a Windows desktop companion for Dota 2.
 >
 > [![GitHub Sponsors](https://img.shields.io/github/sponsors/cteerakit?style=flat-square)](https://github.com/sponsors/cteerakit)
 > [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
